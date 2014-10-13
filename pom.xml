@@ -7,7 +7,7 @@
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
-    <name>Services</name>
+    <name>Cert</name>
     <url>http://www.mfc66.ru</url>
 
     <properties>
