@@ -17,6 +17,5 @@ public class MainApp extends Application{
         StageFactory.createMainStage(stage);
         stage.show();
 
-
     }
 }

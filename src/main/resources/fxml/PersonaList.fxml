@@ -1,24 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kesler.cert.persona.PersonaListController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kesler.cert.persona.PersonaListController">
    <children>
-      <ListView prefHeight="200.0" prefWidth="511.0" VBox.vgrow="ALWAYS">
+      <ListView fx:id="personsListView" prefHeight="200.0" prefWidth="511.0" VBox.vgrow="ALWAYS">
       </ListView>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" text="+" />
-            <Button mnemonicParsing="false" text="-" />
-            <Button mnemonicParsing="false" text="ed" />
+          <Button mnemonicParsing="false" onAction="#handleAddPersonaButtonAction">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../images/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#handleRemovePersonaButtonAction">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../images/delete.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" onAction="#handleEditPersonaButtonAction">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../images/pencil.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
         </items>
       </ToolBar>
-      <StackPane prefHeight="48.0" prefWidth="293.0">
+      <StackPane prefHeight="37.0" prefWidth="293.0">
          <children>
-          <Button fx:id="okButton" mnemonicParsing="false" text="Ок" />
+          <Button mnemonicParsing="false" onAction="#handleOkButtonAction" text="Ок" />
          </children>
       </StackPane>
    </children>

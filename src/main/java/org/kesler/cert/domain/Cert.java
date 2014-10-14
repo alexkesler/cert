@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Cert {
     private CA ca;
-    private Persona persona;
+    private Person person;
     private Date issueDate;
     private Date expireDate;
 
