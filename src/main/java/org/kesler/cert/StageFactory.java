@@ -6,8 +6,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import org.kesler.cert.person.PersonController;
-import org.kesler.cert.person.PersonListController;
+import org.kesler.cert.gui.person.PersonController;
+import org.kesler.cert.gui.person.PersonListController;
+import org.kesler.cert.gui.scan.ScanController;
 
 public abstract class StageFactory {
 
@@ -15,9 +16,11 @@ public abstract class StageFactory {
 
 //    private static Stage mainStage;
     private static Stage personaListStage;
-    private static PersonListController personListController;
     private static Stage personaStage;
+    private static Stage scanStage;
+    private static PersonListController personListController;
     private static PersonController personController;
+    private static ScanController scanController;
 
     public static void createMainStage(final Stage mainStage) throws Exception{
         Parent root = FXMLLoader.load(StageFactory.class.getResource("/fxml/Main.fxml"));
@@ -26,7 +29,7 @@ public abstract class StageFactory {
     }
 
 
-    public static Stage createPersonaListStage(Window owner) throws Exception {
+    public static Stage createPersonListStage(Window owner) throws Exception {
 
         personaListStage = new Stage(StageStyle.UTILITY);
 
@@ -41,11 +44,7 @@ public abstract class StageFactory {
         return personaListStage;
     }
 
-    public static PersonListController getPersonListController() {
-        return personListController;
-    }
-
-    public static Stage createPersonaStage(Window owner) throws Exception {
+    public static Stage createPersonStage(Window owner) throws Exception {
 
         personaStage = new Stage(StageStyle.UTILITY);
 
@@ -59,8 +58,22 @@ public abstract class StageFactory {
         return personaStage;
     }
 
-    public static PersonController getPersonController() {
-        return personController;
+    public static Stage createScanStage(Window owner) throws Exception {
+
+        scanStage = new Stage(StageStyle.UTILITY);
+
+        FXMLLoader loader = new FXMLLoader(StageFactory.class.getResource("/fxml/Scan.fxml"));
+        Parent root = loader.load();
+        scanController = loader.getController();
+        scanStage.setScene(new Scene(root));
+        scanStage.initOwner(owner);
+        scanStage.setTitle("Скан документа");
+
+        return scanStage;
     }
+
+    public static PersonListController getPersonListController() { return personListController; }
+    public static PersonController getPersonController() { return personController; }
+    public static ScanController getScanController() { return scanController; }
 
 }

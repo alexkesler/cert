@@ -1,4 +1,4 @@
-package org.kesler.cert.main;
+package org.kesler.cert.gui.main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +21,7 @@ public class MainController {
 
         Stage personaListStage = null;
         try {
-            personaListStage = StageFactory.createPersonaListStage(root.getScene().getWindow());
+            personaListStage = StageFactory.createPersonListStage(root.getScene().getWindow());
 
         } catch (Exception e) {
             Dialogs.create()

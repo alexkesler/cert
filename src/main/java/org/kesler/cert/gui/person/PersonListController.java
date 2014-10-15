@@ -1,4 +1,4 @@
-package org.kesler.cert.person;
+package org.kesler.cert.gui.person;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,7 +85,7 @@ public class PersonListController {
         log.info("Opening add person dialog");
         Stage stage = null;
         try {
-            stage = StageFactory.createPersonaStage(root.getScene().getWindow());
+            stage = StageFactory.createPersonStage(root.getScene().getWindow());
 
         } catch (Exception e) {
             Dialogs.create()
@@ -121,7 +121,7 @@ public class PersonListController {
 
         Stage stage = null;
         try {
-            stage = StageFactory.createPersonaStage(root.getScene().getWindow());
+            stage = StageFactory.createPersonStage(root.getScene().getWindow());
 
         } catch (Exception e) {
             Dialogs.create()

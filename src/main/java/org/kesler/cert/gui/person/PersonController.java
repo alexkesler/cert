@@ -1,4 +1,4 @@
-package org.kesler.cert.person;
+package org.kesler.cert.gui.person;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,24 +6,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.controlsfx.dialog.*;
+import org.kesler.cert.StageFactory;
 import org.kesler.cert.domain.Cert;
 import org.kesler.cert.domain.CertRight;
 import org.kesler.cert.domain.Person;
 import org.kesler.cert.domain.Scan;
+import org.kesler.cert.gui.AbstractController;
 import org.kesler.cert.util.FXUtils;
 
 
-public class PersonController {
-
-    @FXML
-    protected Parent root;
-
-    public enum Result{
-        OK,
-        CANCEL,
-        NONE
-    }
+public class PersonController extends AbstractController{
 
     protected Person person;
 
@@ -43,6 +38,8 @@ public class PersonController {
     @FXML protected TextField snilsTextField;
     @FXML protected TextField emailTextField;
     @FXML protected TextField phoneTextField;
+    @FXML protected TextArea departmentTextArea;
+    @FXML protected TextArea positionTextArea;
     @FXML protected ListView<Scan> scansListView;
     @FXML protected ListView<CertRight> rightsListView;
     @FXML protected ListView<Cert> certsListView;
@@ -67,6 +64,21 @@ public class PersonController {
 
     @FXML
     protected void handleAddScanButtonAction(ActionEvent ev) {
+        Stage scanStage = null;
+        try {
+            scanStage = StageFactory.createScanStage(root.getScene().getWindow());
+        } catch (Exception e) {
+            org.controlsfx.dialog.Dialogs.create()
+                    .title("Ошибка создания окна")
+                    .showException(e);
+            return;
+        }
+        Scan newScan = new Scan();
+        StageFactory.getScanController().initScan(newScan);
+        scanStage.showAndWait();
+        if (StageFactory.getScanController().getResult()==Result.OK) {
+            observablePersonScans.add(newScan);
+        }
 
     }
 
@@ -143,6 +155,12 @@ public class PersonController {
 
         snilsTextField.setText(person.getSnils());
 
+        emailTextField.setText(person.getEmail());
+        phoneTextField.setText(person.getPhone());
+
+        departmentTextArea.setText(person.getDepartment());
+        positionTextArea.setText(person.getPosition());
+
         observablePersonScans = FXCollections.observableArrayList(person.getScans());
         scansListView.setItems(observablePersonScans);
 
@@ -167,11 +185,14 @@ public class PersonController {
 
         person.setSnils(snilsTextField.getText());
 
+        person.setEmail(emailTextField.getText());
+        person.setPhone(phoneTextField.getText());
+
+        person.setDepartment(departmentTextArea.getText());
+        person.setPosition(positionTextArea.getText());
+
     }
 
-    public Result getResult() {
-        return result;
-    }
 
     // Рендеры для списков (как мы формируем строку в списке)
     class ScanListCell extends ListCell<Scan> {
