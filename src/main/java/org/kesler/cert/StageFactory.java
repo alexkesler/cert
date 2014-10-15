@@ -6,27 +6,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import org.kesler.cert.persona.PersonaController;
-import org.kesler.cert.persona.PersonaListController;
-
-import java.io.IOException;
+import org.kesler.cert.person.PersonController;
+import org.kesler.cert.person.PersonListController;
 
 public abstract class StageFactory {
 
-    public static enum Stages {
-//        MAIN,
-        PERSONA,
-        PERSONA_LIST,
-        CA,
-        CERT,
-        CERT_RIGHT
-    }
+
 
 //    private static Stage mainStage;
     private static Stage personaListStage;
-    private static PersonaListController personaListController;
+    private static PersonListController personListController;
     private static Stage personaStage;
-    private static PersonaController personaController;
+    private static PersonController personController;
 
     public static void createMainStage(final Stage mainStage) throws Exception{
         Parent root = FXMLLoader.load(StageFactory.class.getResource("/fxml/Main.fxml"));
@@ -39,9 +30,9 @@ public abstract class StageFactory {
 
         personaListStage = new Stage(StageStyle.UTILITY);
 
-        FXMLLoader loader = new FXMLLoader(StageFactory.class.getResource("/fxml/PersonaList.fxml"));
+        FXMLLoader loader = new FXMLLoader(StageFactory.class.getResource("/fxml/PersonList.fxml"));
         Parent root = loader.load();
-        personaListController = loader.getController();
+        personListController = loader.getController();
         personaListStage.setScene(new Scene(root));
         personaListStage.initOwner(owner);
         personaListStage.setTitle("Сотрудники");
@@ -50,17 +41,17 @@ public abstract class StageFactory {
         return personaListStage;
     }
 
-    public static PersonaListController getPersonaListController() {
-        return personaListController;
+    public static PersonListController getPersonListController() {
+        return personListController;
     }
 
     public static Stage createPersonaStage(Window owner) throws Exception {
 
         personaStage = new Stage(StageStyle.UTILITY);
 
-        FXMLLoader loader = new FXMLLoader(StageFactory.class.getResource("/fxml/Persona.fxml"));
+        FXMLLoader loader = new FXMLLoader(StageFactory.class.getResource("/fxml/Person.fxml"));
         Parent root = loader.load();
-        personaController = loader.getController();
+        personController = loader.getController();
         personaStage.setScene(new Scene(root));
         personaStage.initOwner(owner);
         personaStage.setTitle("Сотрудник");
@@ -68,8 +59,8 @@ public abstract class StageFactory {
         return personaStage;
     }
 
-    public static PersonaController getPersonaController() {
-        return personaController;
+    public static PersonController getPersonController() {
+        return personController;
     }
 
 }

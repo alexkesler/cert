@@ -1,26 +1,26 @@
-package org.kesler.cert.persona;
+package org.kesler.cert.person;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.apache.log4j.Logger;
+import org.controlsfx.control.action.Action;
+import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialogs;
 import org.kesler.cert.StageFactory;
 import org.kesler.cert.domain.Person;
 import org.kesler.cert.model.PersonService;
+import org.kesler.cert.util.FXUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class PersonaListController {
+public class PersonListController {
     private Logger log = Logger.getLogger(this.getClass().getSimpleName());
 
     private PersonService personService;
@@ -33,28 +33,56 @@ public class PersonaListController {
         personsListView.setCellFactory(new Callback<ListView<Person>, ListCell<Person>>() {
             @Override
             public ListCell<Person> call(ListView<Person> param) {
-                return new PersonaListCell();
+                return new PersonListCell();
             }
         });
     }
 
     public void setPersonService(PersonService personService) {
         this.personService = personService;
-        List<Person> persons = new ArrayList<Person>(personService.getAllPersonas());
-        observablePersons = FXCollections.observableList(persons);
+        observablePersons = FXCollections.observableArrayList(personService.getAllPersons());
         personsListView.setItems(observablePersons);
     }
 
 
+    // Обработчики кнопок управления списком сотрудников
+    @FXML
+    protected void handleAddPersonButtonAction(ActionEvent ev) {
+        addPerson();
+    }
+
+    @FXML
+    protected void handleEditPersonButtonAction(ActionEvent ev) {
+        editPerson();
+    }
+
+    @FXML
+    protected void handlePersonsListViewMouseClick(MouseEvent ev) {
+        if (ev.getClickCount()==2) {
+            editPerson();
+        }
+    }
+
+    @FXML
+    protected void handleRemovePersonButtonAction(ActionEvent ev) {
+        removePerson();
+    }
+
+
+    // Обработчики основных кнопок окна
     @FXML
     protected void handleOkButtonAction(ActionEvent ev) {
         log.info("Hide view");
         root.getScene().getWindow().hide();
     }
 
-    @FXML
-    protected void handleAddPersonaButtonAction(ActionEvent ev) {
-        log.info("Opening add persona dialog");
+
+
+
+    // Методы управления списком сотрудников
+
+    private void addPerson() {
+        log.info("Opening add person dialog");
         Stage stage = null;
         try {
             stage = StageFactory.createPersonaStage(root.getScene().getWindow());
@@ -64,28 +92,22 @@ public class PersonaListController {
                     .owner(root.getScene().getWindow())
                     .title("Ошибка создания окна")
                     .message(e.getMessage())
-                    .showError();
-            e.printStackTrace();
+                    .showException(e);
             return;
         }
 
         Person newPerson = new Person();
-        StageFactory.getPersonaController().initPersona(newPerson);
+        StageFactory.getPersonController().initPerson(newPerson);
         stage.showAndWait();
-        if (StageFactory.getPersonaController().getResult() == PersonaController.Result.OK) {
+        if (StageFactory.getPersonController().getResult() == PersonController.Result.OK) {
             observablePersons.add(newPerson);
-            personService.addPersona(newPerson);
+            personService.addPerson(newPerson);
+            personsListView.getSelectionModel().select(observablePersons.indexOf(newPerson));
         }
 
     }
 
-    @FXML
-    protected void handleRemovePersonaButtonAction(ActionEvent ev) {
-
-    }
-
-    @FXML
-    protected void handleEditPersonaButtonAction(ActionEvent ev) {
+    private void editPerson() {
         Person selectedPerson = personsListView.getSelectionModel().getSelectedItem();
         int selectedIndex = personsListView.getSelectionModel().getSelectedIndex();
         if (selectedPerson ==null) {
@@ -106,22 +128,47 @@ public class PersonaListController {
                     .owner(root.getScene().getWindow())
                     .title("Ошибка создания окна")
                     .message(e.getMessage())
-                    .showError();
-            e.printStackTrace();
+                    .showException(e);
+
             return;
         }
 
-        StageFactory.getPersonaController().initPersona(selectedPerson);
+        StageFactory.getPersonController().initPerson(selectedPerson);
         stage.showAndWait();
-        if (StageFactory.getPersonaController().getResult() == PersonaController.Result.OK) {
-            personService.updatePersona(selectedPerson);
-            triggerUpdate(personsListView,selectedPerson,selectedIndex);
+        if (StageFactory.getPersonController().getResult() == PersonController.Result.OK) {
+            personService.updatePerson(selectedPerson);
+            FXUtils.triggerUpdateListView(personsListView, selectedPerson, selectedIndex);
             personsListView.getSelectionModel().select(selectedIndex);
         }
 
     }
 
-    class PersonaListCell extends ListCell<Person> {
+
+    private void removePerson() {
+        Person selectedPerson = personsListView.getSelectionModel().getSelectedItem();
+        if (selectedPerson ==null) {
+            Dialogs.create()
+                    .owner(root.getScene().getWindow())
+                    .title("Внимание")
+                    .message("Ничего не выбрано")
+                    .showWarning();
+            return;
+        }
+
+        Action response = Dialogs.create()
+                .owner(root.getScene().getWindow())
+                .title("Подтверждение")
+                .message("Удалить данные о сотруднике: " + selectedPerson.getSurName())
+                .showConfirm();
+        if (response == Dialog.ACTION_YES) {
+            observablePersons.remove(selectedPerson);
+            personService.removePerson(selectedPerson);
+        }
+    }
+
+
+    // Вспомогательные классы для списка сотрудников
+    class PersonListCell extends ListCell<Person> {
         @Override
         protected void updateItem(Person item, boolean empty) {
             super.updateItem(item, empty);
@@ -132,9 +179,4 @@ public class PersonaListController {
         }
     }
 
-    public static <T> void triggerUpdate(ListView<T> listView, T newValue, int i) {
-        EventType<? extends ListView.EditEvent<T>> type = ListView.<T>editCommitEvent();
-        Event event = new ListView.EditEvent<T>(listView, type, newValue, i);
-        listView.fireEvent(event);
-    }
-}
+ }

@@ -33,7 +33,7 @@ public class MainController {
             return;
         }
 
-        StageFactory.getPersonaListController().setPersonService(personService);
+        StageFactory.getPersonListController().setPersonService(personService);
         personaListStage.show();
 
     }

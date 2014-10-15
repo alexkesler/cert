@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="root" prefHeight="738.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kesler.cert.person.PersonController">
+   <children>
+      <GridPane hgap="5.0" prefHeight="575.0" prefWidth="526.0" vgap="5.0" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="102.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="199.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="137.0" />
+            <ColumnConstraints maxWidth="193.0" minWidth="10.0" prefWidth="187.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Фамилия" GridPane.rowIndex="1" />
+            <TextField fx:id="surNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="parentNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Имя" GridPane.rowIndex="2" />
+            <Label text="Отчество" GridPane.rowIndex="3" />
+            <Label text="Серия" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label text="Номер" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="Дата выдачи" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="paspSerTextField" maxWidth="50.0" prefHeight="26.0" prefWidth="74.0" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="1" />
+            <TextField fx:id="paspNumTextField" maxWidth="100.0" prefHeight="26.0" prefWidth="94.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <DatePicker fx:id="paspIssueDatePicker" prefHeight="26.0" prefWidth="136.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label text="Паспорт:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <Label text="Кто выдал" GridPane.rowIndex="4" />
+            <TextArea fx:id="paspIssueOGVTextArea" prefHeight="35.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4" GridPane.rowSpan="2" />
+            <Label text="СНИЛС" GridPane.rowIndex="6" />
+            <TextField fx:id="snilsTextField" prefHeight="26.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label text="Сканы" GridPane.rowIndex="10" />
+            <ListView fx:id="scansListView" prefHeight="64.0" prefWidth="445.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="10" GridPane.rowSpan="2" />
+            <Label text="Права" GridPane.rowIndex="13" />
+            <Label text="Сертификаты" GridPane.rowIndex="16" />
+            <ListView fx:id="rightsListView" prefHeight="64.0" prefWidth="445.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="13" GridPane.rowSpan="2" />
+            <ListView fx:id="certsListView" prefHeight="105.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="16" GridPane.rowSpan="2" />
+            <FlowPane hgap="5.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleAddScanButtonAction">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleEditScanButtonAction">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../images/pencil.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleRemoveScanButtonAction">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../images/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </FlowPane>
+            <FlowPane hgap="5.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="15">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleAddCertRightButtonAction">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleEditCertRightButtonAction">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../images/pencil.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleRemoveCertRightButtonAction">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../images/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </FlowPane>
+            <FlowPane hgap="5.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="18">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleAddCertButtonAction">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleEditCertButtonAction">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../images/pencil.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleRemoveCertButtonAction">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../images/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </FlowPane>
+            <Label text="Email" GridPane.rowIndex="7" />
+            <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="phoneTextField" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Label text="Телефон" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Label text="Отдел" GridPane.rowIndex="8" />
+            <Label text="Должность" GridPane.rowIndex="9" />
+         </children>
+      </GridPane>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#handleOkButtonAction" text="ОК" />
+            <Button mnemonicParsing="false" onAction="#handleCancelButtonAction" text="Отмена" />
+        </items>
+      </ToolBar>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

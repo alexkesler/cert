@@ -6,13 +6,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kesler.cert.persona.PersonaListController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kesler.cert.person.PersonListController">
    <children>
-      <ListView fx:id="personsListView" prefHeight="200.0" prefWidth="511.0" VBox.vgrow="ALWAYS">
+      <ListView fx:id="personsListView" onMouseClicked="#handlePersonsListViewMouseClick" prefHeight="200.0" prefWidth="511.0" VBox.vgrow="ALWAYS">
       </ListView>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" onAction="#handleAddPersonaButtonAction">
+          <Button mnemonicParsing="false" onAction="#handleAddPersonButtonAction">
                <graphic>
                   <ImageView>
                      <image>
@@ -20,7 +20,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" onAction="#handleRemovePersonaButtonAction">
+            <Button mnemonicParsing="false" onAction="#handleRemovePersonButtonAction">
                <graphic>
                   <ImageView>
                      <image>
@@ -28,7 +28,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" onAction="#handleEditPersonaButtonAction">
+            <Button mnemonicParsing="false" onAction="#handleEditPersonButtonAction">
                <graphic>
                   <ImageView>
                      <image>

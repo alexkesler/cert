@@ -5,10 +5,10 @@ import org.kesler.cert.domain.Person;
 import java.util.Collection;
 
 public interface PersonService {
-    public Collection<Person>  getAllPersonas();
-    public void addPersona(Person person);
-    public void updatePersona(Person person);
-    public void removePersona(Person person);
+    public Collection<Person> getAllPersons();
+    public void addPerson(Person person);
+    public void updatePerson(Person person);
+    public void removePerson(Person person);
 }
 
 

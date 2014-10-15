@@ -11,22 +11,22 @@ public class PersonServiceSimpleImpl implements PersonService {
     private List<Person> persons = new ArrayList<Person>();
 
     @Override
-    public Collection<Person> getAllPersonas() {
+    public Collection<Person> getAllPersons() {
         return persons;
     }
 
     @Override
-    public void addPersona(Person person) {
+    public void addPerson(Person person) {
         persons.add(person);
     }
 
     @Override
-    public void updatePersona(Person person) {
+    public void updatePerson(Person person) {
 
     }
 
     @Override
-    public void removePersona(Person person) {
+    public void removePerson(Person person) {
         persons.remove(person);
     }
 }
