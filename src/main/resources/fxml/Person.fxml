@@ -10,7 +10,7 @@
    <children>
       <Accordion VBox.vgrow="ALWAYS" expandedPane="$mainPane">
         <panes>
-          <TitledPane fx:id="mainPane" animated="true" expanded="true" text="Основные сведения">
+          <TitledPane fx:id="mainPane" animated="false" expanded="true" text="Основные сведения">
                <content>
                   <GridPane hgap="5.0" prefHeight="575.0" prefWidth="526.0" vgap="5.0">
                     <columnConstraints>
@@ -59,7 +59,7 @@
                   </GridPane>
                </content>
             </TitledPane>
-          <TitledPane animated="true" expanded="false" text="Дополнительно">
+          <TitledPane animated="false" expanded="false" text="Дополнительно">
                <content>
                   <GridPane hgap="5.0" vgap="5.0">
                     <columnConstraints>

@@ -1,8 +1,5 @@
 package org.kesler.cert.domain;
 
-
-import com.sun.istack.internal.NotNull;
-
 import java.util.Date;
 
 public class Scan implements Comparable<Scan>{
@@ -24,9 +21,9 @@ public class Scan implements Comparable<Scan>{
     public Date getStoreDate() { return storeDate; }
     public void setStoreDate(Date storeDate) { this.storeDate = storeDate; }
 
+    @Override
     public int compareTo(Scan another) {
         if(another==null) return 1;
-        if(!(another instanceof Scan)) return 1;
         Scan anotherScan = (Scan)another;
         Date thisStoreDate = this.getStoreDate();
         Date anotherStoreDate = anotherScan.getStoreDate();
