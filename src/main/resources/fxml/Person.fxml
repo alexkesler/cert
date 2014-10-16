@@ -6,11 +6,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="root" prefHeight="459.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kesler.cert.gui.person.PersonController">
+<VBox fx:id="root" prefHeight="485.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kesler.cert.gui.person.PersonController">
    <children>
       <Accordion VBox.vgrow="ALWAYS" expandedPane="$mainPane">
         <panes>
-          <TitledPane animated="true" expanded="true" text="Основные сведения" fx:id="mainPane">
+          <TitledPane fx:id="mainPane" animated="true" expanded="true" text="Основные сведения">
                <content>
                   <GridPane hgap="5.0" prefHeight="575.0" prefWidth="526.0" vgap="5.0">
                     <columnConstraints>
@@ -24,9 +24,8 @@
                         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
@@ -44,18 +43,18 @@
                         <TextField fx:id="paspNumTextField" maxWidth="100.0" prefHeight="26.0" prefWidth="94.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <DatePicker fx:id="paspIssueDatePicker" prefHeight="26.0" prefWidth="136.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                         <Label text="Паспорт:" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
-                        <Label text="Кто выдал" GridPane.rowIndex="3" />
-                        <TextArea fx:id="paspIssueOGVTextArea" prefHeight="35.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2" />
-                        <Label text="СНИЛС" GridPane.rowIndex="5" />
-                        <TextField fx:id="snilsTextField" prefHeight="26.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label text="Email" GridPane.rowIndex="6" />
-                        <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextField fx:id="phoneTextField" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                        <Label text="Телефон" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <Label text="Отдел" GridPane.rowIndex="7" />
-                        <Label text="Должность" GridPane.rowIndex="8" />
-                        <TextArea fx:id="departmentTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="7" />
-                        <TextArea fx:id="positionTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8" />
+                        <Label text="Кто выдал" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                        <TextArea fx:id="paspIssueOGVTextArea" prefHeight="82.0" prefWidth="504.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+                        <Label text="СНИЛС" GridPane.rowIndex="4" />
+                        <TextField fx:id="snilsTextField" prefHeight="26.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Email" GridPane.rowIndex="5" />
+                        <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="phoneTextField" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Label text="Телефон" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Label text="Отдел" GridPane.rowIndex="6" GridPane.valignment="TOP" />
+                        <Label text="Должность" GridPane.rowIndex="7" GridPane.valignment="TOP" />
+                        <TextArea fx:id="departmentTextArea" prefHeight="40.0" prefWidth="504.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+                        <TextArea fx:id="positionTextArea" prefHeight="35.0" prefWidth="504.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="7" />
                      </children>
                   </GridPane>
                </content>
