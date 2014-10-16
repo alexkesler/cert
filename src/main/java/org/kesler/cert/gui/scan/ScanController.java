@@ -14,6 +14,7 @@ import org.kesler.cert.gui.AbstractController;
 import org.kesler.cert.util.FXUtils;
 
 import java.io.File;
+import java.util.Date;
 
 public class ScanController extends AbstractController{
 
@@ -64,6 +65,7 @@ public class ScanController extends AbstractController{
     private void updateScan() {
         scan.setName(nameTextArea.getText());
         scan.setFileName(fileNameTextField.getText());
+        scan.setStoreDate(new Date());
     }
 
     private void selectScan() {

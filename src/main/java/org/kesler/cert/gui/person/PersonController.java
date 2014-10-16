@@ -26,8 +26,6 @@ public class PersonController extends AbstractController{
     private ObservableList<CertRight> observablePersonCertRights;
     private ObservableList<Cert> observablePersonCerts;
 
-    private Result result = Result.NONE;
-
     @FXML protected TextField surNameTextField;
     @FXML protected TextField nameTextField;
     @FXML protected TextField parentNameTextField;
@@ -190,6 +188,9 @@ public class PersonController extends AbstractController{
 
         person.setDepartment(departmentTextArea.getText());
         person.setPosition(positionTextArea.getText());
+
+        person.getScans().clear();
+        person.getScans().addAll(observablePersonScans);
 
     }
 

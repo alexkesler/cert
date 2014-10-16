@@ -1,8 +1,11 @@
 package org.kesler.cert.domain;
 
+
+import com.sun.istack.internal.NotNull;
+
 import java.util.Date;
 
-public class Scan {
+public class Scan implements Comparable<Scan>{
 
     private Person person;
     private String name;
@@ -20,4 +23,19 @@ public class Scan {
 
     public Date getStoreDate() { return storeDate; }
     public void setStoreDate(Date storeDate) { this.storeDate = storeDate; }
+
+    public int compareTo(Scan another) {
+        if(another==null) return 1;
+        if(!(another instanceof Scan)) return 1;
+        Scan anotherScan = (Scan)another;
+        Date thisStoreDate = this.getStoreDate();
+        Date anotherStoreDate = anotherScan.getStoreDate();
+        if (thisStoreDate==null&&anotherStoreDate==null) return 0;
+        if (thisStoreDate!=null&&anotherStoreDate==null) return 1;
+        if (thisStoreDate==null&&anotherStoreDate!=null) return -1;
+        if (thisStoreDate.equals(anotherStoreDate)) return 0;
+        if (thisStoreDate.before(anotherStoreDate)) return -1;
+        else return 1;
+    }
+
 }

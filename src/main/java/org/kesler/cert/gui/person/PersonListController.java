@@ -16,6 +16,7 @@ import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialogs;
 import org.kesler.cert.StageFactory;
 import org.kesler.cert.domain.Person;
+import org.kesler.cert.gui.AbstractController;
 import org.kesler.cert.model.PersonService;
 import org.kesler.cert.util.FXUtils;
 
@@ -99,7 +100,8 @@ public class PersonListController {
         Person newPerson = new Person();
         StageFactory.getPersonController().initPerson(newPerson);
         stage.showAndWait();
-        if (StageFactory.getPersonController().getResult() == PersonController.Result.OK) {
+        if (StageFactory.getPersonController().getResult() == AbstractController.Result.OK) {
+            log.info("Saving person: " + newPerson.getSurName());
             observablePersons.add(newPerson);
             personService.addPerson(newPerson);
             personsListView.getSelectionModel().select(observablePersons.indexOf(newPerson));
