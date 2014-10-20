@@ -72,6 +72,7 @@ public class PersonController extends AbstractController{
             return;
         }
         Scan newScan = new Scan();
+        newScan.setPerson(person);
         StageFactory.getScanController().initScan(newScan);
         scanStage.showAndWait();
         if (StageFactory.getScanController().getResult()==Result.OK) {

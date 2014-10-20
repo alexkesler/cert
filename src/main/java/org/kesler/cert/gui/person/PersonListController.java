@@ -110,8 +110,8 @@ public class PersonListController {
     }
 
     private void editPerson() {
-        Person selectedPerson = personsListView.getSelectionModel().getSelectedItem();
         int selectedIndex = personsListView.getSelectionModel().getSelectedIndex();
+        Person selectedPerson = observablePersons.get(selectedIndex);
         if (selectedPerson ==null) {
             Dialogs.create()
                     .owner(root.getScene().getWindow())
