@@ -17,7 +17,6 @@ public class Cert {
     public CA getCa() {
         return ca;
     }
-
     public void setCa(CA ca) {
         this.ca = ca;
     }
@@ -25,7 +24,6 @@ public class Cert {
     public Person getPerson() {
         return person;
     }
-
     public void setPerson(Person person) {
         this.person = person;
     }
@@ -33,7 +31,6 @@ public class Cert {
     public Date getIssueDate() {
         return issueDate;
     }
-
     public void setIssueDate(Date issueDate) {
         this.issueDate = issueDate;
     }
@@ -41,7 +38,6 @@ public class Cert {
     public Date getExpireDate() {
         return expireDate;
     }
-
     public void setExpireDate(Date expireDate) {
         this.expireDate = expireDate;
     }
@@ -49,7 +45,6 @@ public class Cert {
     public Set<CertRight> getRights() {
         return rights;
     }
-
     public void setRights(Set<CertRight> rights) {
         this.rights = rights;
     }
@@ -57,7 +52,6 @@ public class Cert {
     public boolean isActive() {
         return active;
     }
-
     public void setActive(boolean active) {
         this.active = active;
     }

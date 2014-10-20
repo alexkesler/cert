@@ -111,8 +111,7 @@ public class PersonListController {
 
     private void editPerson() {
         int selectedIndex = personsListView.getSelectionModel().getSelectedIndex();
-        Person selectedPerson = observablePersons.get(selectedIndex);
-        if (selectedPerson ==null) {
+        if (selectedIndex<0) {
             Dialogs.create()
                     .owner(root.getScene().getWindow())
                     .title("Внимание")
@@ -120,6 +119,7 @@ public class PersonListController {
                     .showWarning();
             return;
         }
+        Person selectedPerson = observablePersons.get(selectedIndex);
 
         Stage stage = null;
         try {

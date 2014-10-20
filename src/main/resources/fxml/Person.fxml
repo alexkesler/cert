@@ -81,7 +81,7 @@
                     </rowConstraints>
                      <children>
                         <Label text="Сертификаты" GridPane.rowIndex="6" />
-                        <ListView fx:id="scansListView" prefHeight="64.0" prefWidth="445.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowSpan="2" />
+                        <ListView fx:id="scansListView" onMouseClicked="#handleScansListViewMouseClick" prefHeight="64.0" prefWidth="445.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowSpan="2" />
                         <Label text="Сканы" />
                         <ListView fx:id="rightsListView" prefHeight="64.0" prefWidth="445.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2" />
                         <Label text="Права" GridPane.rowIndex="3" />

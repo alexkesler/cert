@@ -6,9 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.controlsfx.control.action.Action;
 import org.controlsfx.dialog.*;
+import org.controlsfx.dialog.Dialog;
 import org.kesler.cert.StageFactory;
 import org.kesler.cert.domain.Cert;
 import org.kesler.cert.domain.CertRight;
@@ -50,7 +53,6 @@ public class PersonController extends AbstractController{
                 return new ScanListCell();
             }
         });
-
     }
 
     public void initPerson(Person person) {
@@ -62,33 +64,24 @@ public class PersonController extends AbstractController{
 
     @FXML
     protected void handleAddScanButtonAction(ActionEvent ev) {
-        Stage scanStage = null;
-        try {
-            scanStage = StageFactory.createScanStage(root.getScene().getWindow());
-        } catch (Exception e) {
-            org.controlsfx.dialog.Dialogs.create()
-                    .title("Ошибка создания окна")
-                    .showException(e);
-            return;
-        }
-        Scan newScan = new Scan();
-        newScan.setPerson(person);
-        StageFactory.getScanController().initScan(newScan);
-        scanStage.showAndWait();
-        if (StageFactory.getScanController().getResult()==Result.OK) {
-            observablePersonScans.add(newScan);
-        }
-
+        addScan();
     }
 
     @FXML
     protected void handleEditScanButtonAction(ActionEvent ev) {
-
+        editScan();
     }
 
     @FXML
     protected void handleRemoveScanButtonAction(ActionEvent ev) {
+        removeScan();
+    }
 
+    @FXML
+    protected void handleScansListViewMouseClick(MouseEvent ev) {
+        if (ev.getClickCount()==2) {
+            editScan();
+        }
     }
 
 
@@ -195,6 +188,74 @@ public class PersonController extends AbstractController{
 
     }
 
+    private void addScan() {
+        Stage scanStage = null;
+        try {
+            scanStage = StageFactory.createScanStage(root.getScene().getWindow());
+        } catch (Exception e) {
+            org.controlsfx.dialog.Dialogs.create()
+                    .title("Ошибка создания окна")
+                    .showException(e);
+            return;
+        }
+        Scan newScan = new Scan();
+        newScan.setPerson(person);
+        StageFactory.getScanController().initScan(newScan);
+        scanStage.showAndWait();
+        if (StageFactory.getScanController().getResult()==Result.OK) {
+            observablePersonScans.add(newScan);
+        }
+    }
+
+    private void editScan() {
+        int selectedScanIndex = scansListView.getSelectionModel().getSelectedIndex();
+        if (selectedScanIndex < 0) {
+            Dialogs.create()
+                    .owner(root.getScene().getWindow())
+                    .title("Внимание")
+                    .message("Скан не выбран")
+                    .showWarning();
+            return;
+        }
+        Scan selectedScan = observablePersonScans.get(selectedScanIndex);
+        Stage scanStage = null;
+        try {
+            scanStage = StageFactory.createScanStage(root.getScene().getWindow());
+        } catch (Exception e) {
+            org.controlsfx.dialog.Dialogs.create()
+                    .title("Ошибка создания окна")
+                    .showException(e);
+            return;
+        }
+        StageFactory.getScanController().initScan(selectedScan);
+        scanStage.showAndWait();
+        if (StageFactory.getScanController().getResult()==Result.OK) {
+            FXUtils.triggerUpdateListView(scansListView,selectedScan,selectedScanIndex);
+        }
+
+    }
+
+    private void removeScan() {
+        int selectedScanIndex = scansListView.getSelectionModel().getSelectedIndex();
+        if (selectedScanIndex < 0) {
+            Dialogs.create()
+                    .owner(root.getScene().getWindow())
+                    .title("Внимание")
+                    .message("Скан не выбран")
+                    .showWarning();
+            return;
+        }
+        Scan selectedScan = observablePersonScans.get(selectedScanIndex);
+        Action response = Dialogs.create()
+                .owner(root.getScene().getWindow())
+                .title("Внимание")
+                .message("Удалить выбранный скан?")
+                .showConfirm();
+        if (response== Dialog.ACTION_YES) {
+            observablePersonScans.remove(selectedScan);
+        }
+
+    }
 
     // Рендеры для списков (как мы формируем строку в списке)
     class ScanListCell extends ListCell<Scan> {

@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import org.kesler.cert.gui.cert.CertController;
 import org.kesler.cert.gui.person.PersonController;
 import org.kesler.cert.gui.person.PersonListController;
 import org.kesler.cert.gui.scan.ScanController;
@@ -18,9 +19,11 @@ public abstract class StageFactory {
     private static Stage personaListStage;
     private static Stage personaStage;
     private static Stage scanStage;
+    private static Stage certStage;
     private static PersonListController personListController;
     private static PersonController personController;
     private static ScanController scanController;
+    private static CertController certController;
 
     public static void createMainStage(final Stage mainStage) throws Exception{
         Parent root = FXMLLoader.load(StageFactory.class.getResource("/fxml/Main.fxml"));
@@ -72,8 +75,23 @@ public abstract class StageFactory {
         return scanStage;
     }
 
+    public static Stage createCertStage(Window owner) throws Exception {
+
+        certStage = new Stage(StageStyle.UTILITY);
+
+        FXMLLoader loader = new FXMLLoader(StageFactory.class.getResource("/fxml/Cert.fxml"));
+        Parent root = loader.load();
+        certController = loader.getController();
+        certStage.setScene(new Scene(root));
+        certStage.initOwner(owner);
+        certStage.setTitle("Сертификат");
+
+        return scanStage;
+    }
+
     public static PersonListController getPersonListController() { return personListController; }
     public static PersonController getPersonController() { return personController; }
     public static ScanController getScanController() { return scanController; }
+    public static CertController getCertController() {return certController; }
 
 }
