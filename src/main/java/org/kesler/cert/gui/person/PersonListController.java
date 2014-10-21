@@ -30,7 +30,8 @@ public class PersonListController {
     @FXML protected Parent root;
     @FXML protected ListView<Person> personsListView;
 
-    public void initialize() {
+    @FXML
+    protected void initialize() {
         personsListView.setCellFactory(new Callback<ListView<Person>, ListCell<Person>>() {
             @Override
             public ListCell<Person> call(ListView<Person> param) {

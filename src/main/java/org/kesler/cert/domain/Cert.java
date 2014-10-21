@@ -14,47 +14,23 @@ public class Cert {
 
     private boolean active;
 
-    public CA getCa() {
-        return ca;
-    }
-    public void setCa(CA ca) {
-        this.ca = ca;
-    }
+    public CA getCa() { return ca; }
+    public void setCa(CA ca) { this.ca = ca; }
 
-    public Person getPerson() {
-        return person;
-    }
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+    public Person getPerson() { return person; }
+    public void setPerson(Person person) { this.person = person; }
 
-    public Date getIssueDate() {
-        return issueDate;
-    }
-    public void setIssueDate(Date issueDate) {
-        this.issueDate = issueDate;
-    }
+    public Date getIssueDate() { return issueDate; }
+    public void setIssueDate(Date issueDate) { this.issueDate = issueDate; }
 
-    public Date getExpireDate() {
-        return expireDate;
-    }
-    public void setExpireDate(Date expireDate) {
-        this.expireDate = expireDate;
-    }
+    public Date getExpireDate() { return expireDate; }
+    public void setExpireDate(Date expireDate) { this.expireDate = expireDate; }
 
-    public Set<CertRight> getRights() {
-        return rights;
-    }
-    public void setRights(Set<CertRight> rights) {
-        this.rights = rights;
-    }
+    public Set<CertRight> getRights() { return rights; }
+    public void setRights(Set<CertRight> rights) { this.rights = rights; }
 
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
-    }
+    public boolean isActive() { return active; }
+    public void setActive(boolean active) { this.active = active; }
 
     public int compareTo(Object another) {
         if(another==null) return 1;

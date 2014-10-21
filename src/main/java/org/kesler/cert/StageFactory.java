@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import org.kesler.cert.gui.cert.CertController;
+import org.kesler.cert.gui.certright.CertRightController;
 import org.kesler.cert.gui.person.PersonController;
 import org.kesler.cert.gui.person.PersonListController;
 import org.kesler.cert.gui.scan.ScanController;
@@ -20,10 +21,12 @@ public abstract class StageFactory {
     private static Stage personaStage;
     private static Stage scanStage;
     private static Stage certStage;
+    private static Stage certRightStage;
     private static PersonListController personListController;
     private static PersonController personController;
     private static ScanController scanController;
     private static CertController certController;
+    private static CertRightController certRightController;
 
     public static void createMainStage(final Stage mainStage) throws Exception{
         Parent root = FXMLLoader.load(StageFactory.class.getResource("/fxml/Main.fxml"));
@@ -86,12 +89,27 @@ public abstract class StageFactory {
         certStage.initOwner(owner);
         certStage.setTitle("Сертификат");
 
-        return scanStage;
+        return certStage;
+    }
+
+    public static Stage createCertRightStage(Window owner) throws Exception {
+
+        certRightStage = new Stage(StageStyle.UTILITY);
+
+        FXMLLoader loader = new FXMLLoader(StageFactory.class.getResource("/fxml/CertRight.fxml"));
+        Parent root = loader.load();
+        certRightController = loader.getController();
+        certRightStage.setScene(new Scene(root));
+        certRightStage.initOwner(owner);
+        certRightStage.setTitle("Права владельца");
+
+        return certRightStage;
     }
 
     public static PersonListController getPersonListController() { return personListController; }
     public static PersonController getPersonController() { return personController; }
     public static ScanController getScanController() { return scanController; }
     public static CertController getCertController() {return certController; }
+    public static CertRightController getCertRightController() {return certRightController; }
 
 }

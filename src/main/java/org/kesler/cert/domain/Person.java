@@ -1,6 +1,5 @@
 package org.kesler.cert.domain;
 
-
 import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;

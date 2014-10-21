@@ -46,7 +46,8 @@ public class PersonController extends AbstractController{
     @FXML protected ListView<Cert> certsListView;
 
     // Отрабатывает при загрузке окна
-    public void initialize() {
+    @FXML
+    protected void initialize() {
         scansListView.setCellFactory(new Callback<ListView<Scan>, ListCell<Scan>>() {
             @Override
             public ListCell<Scan> call(ListView<Scan> param) {

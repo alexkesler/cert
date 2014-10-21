@@ -23,7 +23,8 @@ public class ScanController extends AbstractController{
 
     private Scan scan;
 
-    public void initialize() {
+    @FXML
+    protected void initialize() {
 
     }
 
