@@ -6,13 +6,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kesler.cert.gui.person.PersonListController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.kesler.cert.gui.certright.CertRightListController">
    <children>
-      <ListView fx:id="personsListView" onMouseClicked="#handlePersonsListViewMouseClick" prefHeight="200.0" prefWidth="511.0" VBox.vgrow="ALWAYS">
+      <ListView fx:id="certRightListView" onMouseClicked="#handleCertRightListViewMouseClick" prefHeight="200.0" prefWidth="511.0" VBox.vgrow="ALWAYS">
       </ListView>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" onAction="#handleAddPersonButtonAction">
+          <Button mnemonicParsing="false" onAction="#handleAddCertRightButtonAction">
                <graphic>
                   <ImageView>
                      <image>
@@ -20,7 +21,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" onAction="#handleEditPersonButtonAction">
+            <Button mnemonicParsing="false" onAction="#handleEditCertRightButtonAction">
                 <graphic>
                     <ImageView>
                         <image>
@@ -28,7 +29,7 @@
                         </image>
                     </ImageView>
                 </graphic></Button>
-            <Button mnemonicParsing="false" onAction="#handleRemovePersonButtonAction">
+            <Button mnemonicParsing="false" onAction="#handleRemoveCertRightButtonAction">
                <graphic>
                   <ImageView>
                      <image>

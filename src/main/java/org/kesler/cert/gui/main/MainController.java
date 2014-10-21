@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.controlsfx.dialog.Dialogs;
 import org.kesler.cert.StageFactory;
+import org.kesler.cert.model.CertRightService;
 import org.kesler.cert.model.PersonService;
+import org.kesler.cert.model.impl.CertRightServiceSimpleImpl;
 import org.kesler.cert.model.impl.PersonServiceSimpleImpl;
 
 public class MainController {
@@ -15,31 +17,51 @@ public class MainController {
     protected Parent root;
 
     private PersonService personService = new PersonServiceSimpleImpl();
+    private CertRightService certRightService = new CertRightServiceSimpleImpl();
 
     @FXML
-    protected void handlePersonaListButtonAction(ActionEvent ev) {
+    protected void handlePersonListButtonAction(ActionEvent ev) {
 
-        Stage personaListStage = null;
+        Stage personListStage = null;
         try {
-            personaListStage = StageFactory.createPersonListStage(root.getScene().getWindow());
+            personListStage = StageFactory.createPersonListStage(root.getScene().getWindow());
 
         } catch (Exception e) {
             Dialogs.create()
                     .owner(root.getScene().getWindow())
                     .title("Ошибка создания окна")
                     .message(e.getMessage())
-                    .showError();
-            e.printStackTrace();
+                    .showException(e);
             return;
         }
 
         StageFactory.getPersonListController().setPersonService(personService);
-        personaListStage.show();
+        personListStage.show();
 
     }
 
     @FXML
-    protected void handlePersonaButtonAction(ActionEvent ev) {
+    protected void handleCertRightListMenuItem(ActionEvent ev) {
+        Stage certRightListStage = null;
+        try {
+            certRightListStage = StageFactory.createCertRightListStage(root.getScene().getWindow());
+
+        } catch (Exception e) {
+            Dialogs.create()
+                    .owner(root.getScene().getWindow())
+                    .title("Ошибка создания окна")
+                    .message(e.getMessage())
+                    .showException(e);
+            return;
+        }
+
+        StageFactory.getCertRightListController().setCertRightService(certRightService);
+        certRightListStage.show();
+
+    }
+
+    @FXML
+    protected void handlePersonButtonAction(ActionEvent ev) {
 
 
     }

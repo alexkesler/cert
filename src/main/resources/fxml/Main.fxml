@@ -11,7 +11,7 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Меню">
+        <Menu mnemonicParsing="false" text="Задачи">
           <items>
             <MenuItem mnemonicParsing="false" text="New" />
             <MenuItem mnemonicParsing="false" text="Open…" />
@@ -27,6 +27,11 @@
             <MenuItem mnemonicParsing="false" text="Quit" />
           </items>
         </Menu>
+            <Menu mnemonicParsing="false" text="Справочники">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleCertRightListMenuItem" text="Права сертификатов" />
+              </items>
+            </Menu>
         <Menu mnemonicParsing="false" text="Помощь">
           <items>
             <MenuItem mnemonicParsing="false" text="О программе" />
@@ -37,8 +42,8 @@
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
             <Button mnemonicParsing="false" onAction="#handleIssueButtonAction" text="Выпуск" />
-            <Button mnemonicParsing="false" onAction="#handlePersonaButtonAction" text="Сроки" />
-            <Button mnemonicParsing="false" onAction="#handlePersonaListButtonAction" text="Сотрудники" />
+            <Button mnemonicParsing="false" onAction="#handlePersonButtonAction" text="Сроки" />
+            <Button mnemonicParsing="false" onAction="#handlePersonListButtonAction" text="Сотрудники" />
         </items>
       </ToolBar>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
