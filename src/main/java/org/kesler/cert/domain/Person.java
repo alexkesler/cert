@@ -74,5 +74,9 @@ public class Person {
     public String getPosition() { return position; }
     public void setPosition(String position) { this.position = position; }
 
+    public String getFIO() {
+        return (surName==null?"":surName+" ")+(name==null?"":name+" ")+(parentName==null?"":parentName);
+    }
+
 }
 
